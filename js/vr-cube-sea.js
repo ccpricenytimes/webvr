@@ -50,13 +50,12 @@ window.VRCubeSea = (function () {
     var cubeIndices = [];
 
     // Build a single cube.
-    function appendCube (x, y, z) {
+    function appendCube (x, y, z, size) {
       if (!x && !y && !z) {
         // Don't create a cube in the center.
         return;
       }
 
-      var size = 0.2;
       // Bottom
       var idx = cubeVerts.length / 5.0;
       cubeIndices.push(idx, idx + 1, idx + 2);
@@ -120,14 +119,7 @@ window.VRCubeSea = (function () {
 
     var gridSize = 10;
 
-    // Build the cube sea
-    for (var x = 0; x < gridSize; ++x) {
-      for (var y = 0; y < gridSize; ++y) {
-        for (var z = 0; z < gridSize; ++z) {
-          appendCube(x - (gridSize / 2), y - (gridSize / 2), z - (gridSize / 2));
-        }
-      }
-    }
+    appendCube(0,-25,0, 10);
 
     this.vertBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, this.vertBuffer);
